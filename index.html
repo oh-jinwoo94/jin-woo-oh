@@ -244,9 +244,9 @@
       <p class="text-sm text-gray-600 mb-4">Click a thumbnail to enlarge.</p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <button
-          type="button"
+        <a
           class="bg-white p-4 rounded-2xl shadow-lg text-left hover:shadow-xl transition"
+          href="https://oh-jinwoo94.github.io/jin-woo-oh/ST_vis.png"
           data-image-url="https://oh-jinwoo94.github.io/jin-woo-oh/ST_vis.png"
           data-image-alt="Morphology-based AI cell typing validated by spatial transcriptomics (Xenium ST)"
           data-image-caption="Morphology-guided Spatial AI (Xenium ST validation)"
@@ -256,11 +256,11 @@
             <div class="font-medium text-gray-900">Morphology-guided Spatial AI <span class="text-gray-500 font-normal">(JITC 2025)</span></div>
             <div class="text-gray-600">AI cell typing validated by Xenium ST markers.</div>
           </div>
-        </button>
+        </a>
 
-        <button
-          type="button"
+        <a
           class="bg-white p-4 rounded-2xl shadow-lg text-left hover:shadow-xl transition"
+          href="https://oh-jinwoo94.github.io/jin-woo-oh/natcomms_2024_fig5.png"
           data-image-url="https://oh-jinwoo94.github.io/jin-woo-oh/natcomms_2024_fig5.png"
           data-image-alt="Nature Communications 2024 Figure 4"
           data-image-caption="Conserved Enhancer Detection (Nature Communications 2024)"
@@ -270,11 +270,11 @@
             <div class="font-medium text-gray-900">Conserved Enhancer Detection <span class="text-gray-500 font-normal">(Nature Commun. 2024)</span></div>
             <div class="text-gray-600">Orthologous enhancer mapping using gkm-align algorithm.</div>
           </div>
-        </button>
+        </a>
 
-        <button
-          type="button"
+        <a
           class="bg-white p-4 rounded-2xl shadow-lg text-left hover:shadow-xl transition"
+          href="https://oh-jinwoo94.github.io/jin-woo-oh/simd_implementation.png"
           data-image-url="https://oh-jinwoo94.github.io/jin-woo-oh/simd_implementation.png"
           data-image-alt="AVX2 SIMD implementation schematic for mismatch counting"
           data-image-caption="Algorithm Performance Optimization (Ph.D. Thesis 2024)"
@@ -284,7 +284,7 @@
             <div class="font-medium text-gray-900">Algorithm Performance Optimization <span class="text-gray-500 font-normal">(Ph.D. Thesis 2024)</span></div>
             <div class="text-gray-600">SIMD-accelerated computational kernel for gkm-align.</div>
           </div>
-        </button>
+        </a>
       </div>
     </section>
 
@@ -488,7 +488,15 @@
       }
 
       document.querySelectorAll('[data-image-url]').forEach(function (el) {
-        el.addEventListener('click', function () {
+        el.addEventListener('click', function (e) {
+          var isModified =
+            e.metaKey ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.altKey ||
+            e.button === 1;
+          if (isModified) return;
+          if (e && typeof e.preventDefault === 'function') e.preventDefault();
           openModal(
             el.getAttribute('data-image-url'),
             el.getAttribute('data-image-alt'),
