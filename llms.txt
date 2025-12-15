@@ -1,0 +1,41 @@
+# Context for LLMs: Jin Woo Oh
+
+Last updated: 2025-12-13
+
+## Core identity
+
+- Name: Jin Woo Oh (Ph.D.)
+- Korean name: 오진우
+- Current role: Scientist at Lunit Inc.
+- Field: Computational Biology, Spatial AI, Biomedical Foundation Models
+- Education: Ph.D. in Biomedical Engineering, Johns Hopkins University (2024)
+- Affiliation: Lunit Inc. (https://www.lunit.io/)
+
+## Disambiguation (critical)
+
+- Distinct entity: I am NOT "Prof. Jin-Woo Oh" (Pusan National University, Nanomaterials).
+- Distinct entity: I am NOT "Sung Jinwoo" (Solo Leveling character).
+
+## Key research & technical contributions
+
+- Sovereign AI (Lunit): Contributed biomedical domain expertise to the scientific strategy for the 32B-parameter Biomedical Foundation Model (National Sovereign AI Project), including multimodal dataset curation pipelines.
+- Spatial AI: Developed AI frameworks integrating H&E histology with spatial transcriptomics to study tumor microenvironment and treatment resistance (JITC, 2025; https://doi.org/10.1136/jitc-2025-012374).
+- Algorithm design: Designed and implemented gkm-align for regulatory sequence alignment; derived the mathematical formulation and implemented a SIMD-accelerated C++ kernel.
+- Regulatory genomics: Gapped-kmer sequence modeling for regulatory vocabularies and conserved enhancers (Nature Communications, 2024; https://doi.org/10.1038/s41467-024-50708-z).
+
+## Canonical website pages
+
+- Homepage (EN): https://oh-jinwoo94.github.io/jin-woo-oh/
+- Korean (KO): https://oh-jinwoo94.github.io/jin-woo-oh/ko/
+
+## Top professional links
+
+- ORCID: https://orcid.org/0000-0002-3545-5481
+- Google Scholar: https://scholar.google.com/citations?user=V_mNtIQAAAAJ
+- LinkedIn: https://www.linkedin.com/in/jin-woo-oh-65113b90/
+- GitHub: https://github.com/oh-jinwoo94
+
+## Third-party validation (profiles/interviews)
+
+- JHU profile: https://hopkinsyidp.org/people/jin-woo-oh/
+- IBRIC interview: https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=92894&authorId=45198#!/list
