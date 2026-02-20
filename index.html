@@ -457,7 +457,7 @@
       <div class="p-3">
         <img id="image-modal-img" src="" alt="" class="w-full h-auto rounded-lg hidden">
         <video id="image-modal-video" class="w-full h-auto rounded-lg hidden" controls playsinline muted autoplay loop></video>
-        <p id="image-modal-caption" class="mt-2 text-sm text-gray-600"></p>
+        <p id="image-modal-caption" class="mt-2 text-sm text-gray-600 hidden"></p>
       </div>
     </div>
   </div>
@@ -483,7 +483,8 @@
         modalImg.src = url;
         modalImg.alt = alt || 'Figure';
         modalTitle.textContent = caption || 'Figure';
-        modalCaption.textContent = caption || '';
+        modalCaption.textContent = '';
+        modalCaption.classList.add('hidden');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
@@ -503,7 +504,8 @@
         if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(function () {});
 
         modalTitle.textContent = caption || 'Video';
-        modalCaption.textContent = caption || '';
+        modalCaption.textContent = '';
+        modalCaption.classList.add('hidden');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
@@ -514,6 +516,8 @@
         modal.classList.remove('flex');
         modalImg.src = '';
         modalImg.classList.add('hidden');
+        modalCaption.textContent = '';
+        modalCaption.classList.add('hidden');
 
         modalVideo.pause();
         modalVideo.src = '';
