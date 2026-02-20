@@ -178,6 +178,7 @@
     <!-- Research Highlights -->
     <section class="mb-8">
       <h2 class="text-2xl font-semibold mb-2">Research Highlights</h2>
+      <p class="text-sm text-gray-600 mb-4">Click a thumbnail to enlarge.</p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <a
@@ -199,6 +200,9 @@
           href="gkm_align_independent_300fr_two_rot.mp4"
           target="_blank"
           rel="noopener noreferrer"
+          data-image-url="gkm_video_thumb.png"
+          data-image-alt="Geometric modeling of genome evolution: identifying optimal alignment paths in gapped-kmer feature space (gkm-align)."
+          data-image-caption="Geometric modeling of genome evolution (Nature Commun. 2024)"
         >
           <img src="gkm_video_thumb.png" alt="Geometric modeling of genome evolution: identifying optimal alignment paths in gapped-kmer feature space (gkm-align)." class="w-full h-48 object-contain bg-gray-50 rounded-lg border border-gray-200" loading="lazy">
           <div class="mt-3 text-sm text-gray-700">
@@ -445,13 +449,14 @@
   </footer>
   <!-- Image modal (shared) -->
   <div id="image-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4">
-    <div class="w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden">
+    <div class="w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden">
       <div class="flex items-center justify-between px-4 py-3 border-b">
         <div id="image-modal-title" class="text-sm font-medium text-gray-900">Figure</div>
         <button id="image-modal-close" type="button" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">Close</button>
       </div>
       <div class="p-3">
-        <img id="image-modal-img" src="" alt="" class="w-full h-auto rounded-lg">
+        <img id="image-modal-img" src="" alt="" class="w-full h-auto rounded-lg hidden">
+        <video id="image-modal-video" class="w-full h-auto rounded-lg hidden" controls playsinline muted autoplay></video>
         <p id="image-modal-caption" class="mt-2 text-sm text-gray-600"></p>
       </div>
     </div>
@@ -461,16 +466,43 @@
     (function () {
       var modal = document.getElementById('image-modal');
       var modalImg = document.getElementById('image-modal-img');
+      var modalVideo = document.getElementById('image-modal-video');
       var modalTitle = document.getElementById('image-modal-title');
       var modalCaption = document.getElementById('image-modal-caption');
       var closeBtn = document.getElementById('image-modal-close');
 
-      if (!modal || !modalImg || !closeBtn) return;
+      if (!modal || !modalImg || !modalVideo || !closeBtn) return;
 
-      function openModal(url, alt, caption) {
+      function openModalImage(url, alt, caption) {
+        modalVideo.classList.add('hidden');
+        modalVideo.removeAttribute('poster');
+        modalVideo.pause();
+        modalVideo.src = '';
+
+        modalImg.classList.remove('hidden');
         modalImg.src = url;
         modalImg.alt = alt || 'Figure';
         modalTitle.textContent = caption || 'Figure';
+        modalCaption.textContent = caption || '';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function openModalVideo(url, posterUrl, caption) {
+        modalImg.classList.add('hidden');
+        modalImg.src = '';
+
+        modalVideo.classList.remove('hidden');
+        if (posterUrl) modalVideo.setAttribute('poster', posterUrl);
+        modalVideo.muted = true;
+        modalVideo.currentTime = 0;
+        modalVideo.src = url;
+        modalVideo.load();
+        var playPromise = modalVideo.play();
+        if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(function () {});
+
+        modalTitle.textContent = caption || 'Video';
         modalCaption.textContent = caption || '';
         modal.classList.remove('hidden');
         modal.classList.add('flex');
@@ -481,6 +513,11 @@
         modal.classList.add('hidden');
         modal.classList.remove('flex');
         modalImg.src = '';
+        modalImg.classList.add('hidden');
+
+        modalVideo.pause();
+        modalVideo.src = '';
+        modalVideo.classList.add('hidden');
         document.body.style.overflow = '';
       }
 
@@ -494,10 +531,16 @@
             e.button === 1;
           if (isModified) return;
           if (e && typeof e.preventDefault === 'function') e.preventDefault();
-          openModal(
+          var href = el.getAttribute('href') || '';
+          var caption = el.getAttribute('data-image-caption');
+          if (href.toLowerCase().endsWith('.mp4')) {
+            openModalVideo(href, el.getAttribute('data-image-url'), caption);
+            return;
+          }
+          openModalImage(
             el.getAttribute('data-image-url'),
             el.getAttribute('data-image-alt'),
-            el.getAttribute('data-image-caption')
+            caption
           );
         });
       });
