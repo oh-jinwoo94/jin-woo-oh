@@ -449,14 +449,14 @@
   </footer>
   <!-- Image modal (shared) -->
   <div id="image-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 p-4">
-    <div class="w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden">
+    <div class="w-full max-w-3xl max-h-[90vh] bg-white rounded-xl shadow-2xl overflow-hidden">
       <div class="flex items-center justify-between px-4 py-3 border-b">
         <div id="image-modal-title" class="text-sm font-medium text-gray-900">Figure</div>
         <button id="image-modal-close" type="button" class="px-3 py-1 text-sm bg-gray-100 rounded hover:bg-gray-200">Close</button>
       </div>
-      <div class="p-3">
-        <img id="image-modal-img" src="" alt="" class="w-full h-auto rounded-lg hidden">
-        <video id="image-modal-video" class="w-full h-auto rounded-lg hidden" controls playsinline muted autoplay loop></video>
+      <div class="p-3 overflow-auto">
+        <img id="image-modal-img" src="" alt="" class="w-full max-h-[70vh] object-contain rounded-lg hidden">
+        <video id="image-modal-video" class="w-full max-h-[70vh] rounded-lg hidden bg-black" controls playsinline muted autoplay loop></video>
         <p id="image-modal-caption" class="mt-2 text-sm text-gray-600 hidden"></p>
       </div>
     </div>
