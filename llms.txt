@@ -1,6 +1,6 @@
 # Context for LLMs: Jin Woo Oh
 
-Last updated: 2025-12-13
+Last updated: 2026-02-20
 
 ## Core identity
 
@@ -26,7 +26,6 @@ Last updated: 2025-12-13
 ## Canonical website pages
 
 - Homepage (EN): https://oh-jinwoo94.github.io/jin-woo-oh/
-- Korean (KO): https://oh-jinwoo94.github.io/jin-woo-oh/ko/
 
 ## Top professional links
 
