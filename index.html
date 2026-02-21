@@ -193,6 +193,7 @@
           class="bg-white p-4 rounded-2xl shadow-lg text-left hover:shadow-xl transition"
           href="https://oh-jinwoo94.github.io/jin-woo-oh/ST_vis.png"
           data-image-url="https://oh-jinwoo94.github.io/jin-woo-oh/ST_vis.png"
+          data-image-title="Digital pathology AI"
           data-image-alt="Digital pathology AI integrating morphology and spatial transcriptomics for tumor microenvironment profiling."
           data-image-caption="Multimodal integration of H&E morphology and spatial transcriptomics, decoding tumor microenvironment composition at single-cell resolution (JITC 2025)"
         >
@@ -209,6 +210,7 @@
           target="_blank"
           rel="noopener noreferrer"
           data-image-url="gkm_video_thumb.png"
+          data-image-title="Geometric modeling of genome evolution"
           data-image-alt="Geometric modeling of genome evolution: identifying optimal alignment paths in gapped-kmer feature space (gkm-align)."
           data-image-caption="Human and mouse EGFR loci represented as trajectories in sequence space. Gray lines connect orthologous genomic windows identified by gkm-align (Nature Commun. 2024)"
         >
@@ -223,6 +225,7 @@
           class="bg-white p-4 rounded-2xl shadow-lg text-left hover:shadow-xl transition"
           href="cell_state_transition.png"
           data-image-url="cell_state_transition.png"
+          data-image-title="Gene regulatory dynamics in cell-state transitions"
           data-image-alt="Gene regulatory dynamics in cell-state transitions: Simulating embryonic stem cell (ESC)→definitive endoderm (DE) transition dynamics under CRISPR enhancer perturbation."
           data-image-caption="Stochastic simulation of enhancer-driven cell-state transitions. CRISPR perturbation of enhancer strength delays but cannot block transition below a critical threshold, revealing bistable dynamics of gene regulatory circuits (Nature Genetics 2023)"
         >
@@ -485,7 +488,7 @@
 
       if (!modal || !modalImg || !modalVideo || !closeBtn) return;
 
-      function openModalImage(url, alt, caption) {
+      function openModalImage(url, alt, title, caption) {
         modalVideo.classList.add('hidden');
         modalVideo.removeAttribute('poster');
         modalVideo.pause();
@@ -494,15 +497,15 @@
         modalImg.classList.remove('hidden');
         modalImg.src = url;
         modalImg.alt = alt || 'Figure';
-        modalTitle.textContent = caption || 'Figure';
-        modalCaption.textContent = '';
-        modalCaption.classList.add('hidden');
+        modalTitle.textContent = title || 'Figure';
+        modalCaption.textContent = caption || '';
+        if (caption) { modalCaption.classList.remove('hidden'); } else { modalCaption.classList.add('hidden'); }
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
       }
 
-      function openModalVideo(url, posterUrl, caption) {
+      function openModalVideo(url, posterUrl, title, caption) {
         modalImg.classList.add('hidden');
         modalImg.src = '';
 
@@ -515,9 +518,9 @@
         var playPromise = modalVideo.play();
         if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(function () {});
 
-        modalTitle.textContent = caption || 'Video';
-        modalCaption.textContent = '';
-        modalCaption.classList.add('hidden');
+        modalTitle.textContent = title || 'Video';
+        modalCaption.textContent = caption || '';
+        if (caption) { modalCaption.classList.remove('hidden'); } else { modalCaption.classList.add('hidden'); }
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
@@ -548,14 +551,16 @@
           if (isModified) return;
           if (e && typeof e.preventDefault === 'function') e.preventDefault();
           var href = el.getAttribute('href') || '';
+          var title = el.getAttribute('data-image-title') || '';
           var caption = el.getAttribute('data-image-caption');
           if (href.toLowerCase().endsWith('.mp4')) {
-            openModalVideo(href, el.getAttribute('data-image-url'), caption);
+            openModalVideo(href, el.getAttribute('data-image-url'), title, caption);
             return;
           }
           openModalImage(
             el.getAttribute('data-image-url'),
             el.getAttribute('data-image-alt'),
+            title,
             caption
           );
         });
