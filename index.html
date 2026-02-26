@@ -213,7 +213,7 @@
           data-image-url="gkm_video_thumb.png"
           data-image-title="Geometric modeling of genome evolution"
           data-image-alt="Geometric modeling of genome evolution: identifying optimal alignment paths in gapped-kmer feature space (gkm-align)."
-          data-image-caption="Human and mouse EGFR loci represented as trajectories in sequence space. Gray lines connect orthologous genomic windows identified by gkm-align (Nature Commun. 2024)"
+          data-image-caption="Human and mouse EGFR loci as trajectories in sequence space. (X,Y): rank-2 SVD embedding of the gkm-similarity matrix G; (Z): genomic position. Yellow: exons; gray: introns. Rungs connect orthologous windows from the gkm-align alignment path. [<a href=&quot;https://github.com/oh-jinwoo94/gkm-align/raw/main/theory/gkm_align_algorithm_appendix.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;text-blue-600 hover:underline&quot;>Math</a>]"
         >
           <img src="gkm_video_thumb.png" alt="Geometric modeling of genome evolution: identifying optimal alignment paths in gapped-kmer feature space (gkm-align)." class="w-full h-48 object-contain bg-white rounded-lg border border-gray-200">
           <div class="mt-3 text-sm text-gray-700">
@@ -534,7 +534,7 @@
         modalImg.src = url;
         modalImg.alt = alt || 'Figure';
         modalTitle.textContent = title || 'Figure';
-        modalCaption.textContent = caption || '';
+        modalCaption.innerHTML = caption || '';
         if (caption) { modalCaption.classList.remove('hidden'); } else { modalCaption.classList.add('hidden'); }
         modal.classList.remove('hidden');
         modal.classList.add('flex');
@@ -555,7 +555,7 @@
         if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(function () {});
 
         modalTitle.textContent = title || 'Video';
-        modalCaption.textContent = caption || '';
+        modalCaption.innerHTML = caption || '';
         if (caption) { modalCaption.classList.remove('hidden'); } else { modalCaption.classList.add('hidden'); }
         modal.classList.remove('hidden');
         modal.classList.add('flex');
