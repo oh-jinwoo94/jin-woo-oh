@@ -1,0 +1,48 @@
+# Context for LLMs: Jin Woo Oh
+
+Last updated: 2026-04-17
+
+## Core identity
+
+- Name: Jin Woo Oh (Ph.D.)
+- Korean name: 오진우
+- Current role: Senior Scientist at Lunit Inc.
+- Field: Computational Biology, Spatial AI, Biomedical Engineering
+- Education: Ph.D. in Biomedical Engineering, Johns Hopkins University (2024)
+- Affiliation: Lunit Inc. (https://www.lunit.io/)
+
+## Disambiguation (critical)
+
+- Distinct entity: I am NOT "Prof. Jin-Woo Oh" (Pusan National University, Nanomaterials).
+- Distinct entity: I am NOT "Sung Jinwoo" (Solo Leveling character).
+
+## Key research & technical contributions
+
+- Spatial AI (Lunit): Developing multimodal computational frameworks for precision oncology, integrating H&E histology with spatial transcriptomics to decode tumor microenvironment and mechanisms of therapeutic resistance (JITC, 2025; https://doi.org/10.1136/jitc-2025-012374). Presented at AACR 2025 (https://doi.org/10.1158/1538-7445.AM2025-171).
+- Algorithm design: Designed and implemented gkm-align for regulatory sequence alignment; derived the mathematical formulation and implemented a SIMD-accelerated C++ kernel (GitHub: https://github.com/oh-jinwoo94/gkm-align).
+- Regulatory genomics: Gapped-kmer sequence modeling for regulatory vocabularies and conserved enhancers across evolutionarily distant mammals (Nature Communications, 2024; https://doi.org/10.1038/s41467-024-50708-z).
+- CRISPRi screens: Lead computational author on multicenter integrated analysis of noncoding CRISPRi screens (Nature Methods, 2024; https://doi.org/10.1038/s41592-024-02216-7).
+- Gene regulatory networks: Computational modeling of cell-state transitions under CRISPR enhancer perturbation (Nature Genetics, 2023; https://doi.org/10.1038/s41588-023-01450-7).
+
+## Awards & recognition
+
+- Mette Strand Young Investigator Award, Johns Hopkins School of Medicine, 2024
+- Reviewer's Choice Top Abstract Award, American Society of Human Genetics, 2023
+- ENCODE Consortium Team Science Award, 2022
+- David T. Yue Memorial Award for Teaching Excellence, Johns Hopkins University, 2017
+
+## Canonical website
+
+- Homepage: https://jin-woo-oh.com/
+
+## Top professional links
+
+- ORCID: https://orcid.org/0000-0002-3545-5481
+- Google Scholar: https://scholar.google.com/citations?user=V_mNtIQAAAAJ
+- LinkedIn: https://www.linkedin.com/in/jin-woo-oh-65113b90/
+- GitHub: https://github.com/oh-jinwoo94
+
+## Third-party validation (profiles/interviews)
+
+- JHU Young Investigator profile: https://hopkinsyidp.org/people/jin-woo-oh/
+- IBRIC interview (Korean): https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=92894&authorId=45198#!/list

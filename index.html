@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jin Woo Oh, Ph.D.</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jin-woo-oh.com/" />
+  <meta property="og:title" content="Jin Woo Oh, Ph.D." />
+  <meta property="og:description" content="Computational biologist developing algorithms to decode regulatory genomes and spatial tumor biology. Ph.D., Johns Hopkins." />
+  <meta property="og:image" content="https://jin-woo-oh.com/headshot.png" />
+  <meta name="description" content="Jin Woo Oh: Computational biologist developing algorithms to decode how genomes encode, regulate, and evolve biological function. Senior Scientist at Lunit. Ph.D., Johns Hopkins." />
+  <meta name="google-site-verification" content="JX0NJutJxl5fwCl1cQu7r8CeXgB1KFXTsHOXfUtOUwI" />
+  <meta name="msvalidate.01" content="CA6FE61B31E32B48DB05141615E20ABF" />
+  <link rel="canonical" href="https://jin-woo-oh.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    *, *::before, *::after { font-family: 'Inter', system-ui, sans-serif; }
+
+    /* Subtle dot-grid background */
+    .bg-grid {
+      background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* Glassmorphism surface */
+    .glass {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass-hover {
+      transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    }
+    .glass-hover:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(59,130,246,0.45);
+      box-shadow: 0 0 32px rgba(59,130,246,0.15);
+      transform: translateY(-2px);
+    }
+
+    /* Sticky nav */
+    .nav-glass {
+      background: rgba(4,9,20,0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Primary CTA button */
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      transition: opacity 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      opacity: 0.88;
+      box-shadow: 0 0 28px rgba(59,130,246,0.45);
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #60a5fa;
+    }
+
+    /* Publication left-border accent */
+    .pub-item {
+      border-left: 2px solid rgba(59,130,246,0.3);
+      transition: border-color 0.2s, padding-left 0.2s;
+    }
+    .pub-item:hover { border-color: rgba(59,130,246,0.85); }
+
+    /* Headshot glow */
+    .headshot-glow {
+      box-shadow: 0 0 0 2px rgba(59,130,246,0.55), 0 0 64px rgba(59,130,246,0.28);
+    }
+
+    /* Floating orb animations */
+    @keyframes floatA {
+      0%, 100% { transform: translateY(0)   scale(1); }
+      50%       { transform: translateY(-24px) scale(1.06); }
+    }
+    @keyframes floatB {
+      0%, 100% { transform: translateY(0)   scale(1); }
+      50%       { transform: translateY(18px) scale(0.96); }
+    }
+    .orb-a { animation: floatA 9s ease-in-out infinite; }
+    .orb-b { animation: floatB 12s ease-in-out 1.5s infinite; }
+
+    /* Entrance animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .anim-0 { animation: fadeUp 0.75s ease both; }
+    .anim-1 { animation: fadeUp 0.75s ease 0.10s both; }
+    .anim-2 { animation: fadeUp 0.75s ease 0.20s both; }
+    .anim-3 { animation: fadeUp 0.75s ease 0.30s both; }
+    .anim-4 { animation: fadeUp 0.75s ease 0.45s both; }
+
+    /* Career arc flow dot */
+    @keyframes flowDot {
+      0%   { left: -8px; opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { left: calc(100% + 8px); opacity: 0; }
+    }
+    .flow-dot {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 6px; height: 6px;
+      background: #60a5fa;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(96,165,250,0.9);
+      animation: flowDot 2.2s ease-in-out infinite;
+    }
+    .arc-node-active {
+      border-color: rgba(59,130,246,0.45) !important;
+      box-shadow: 0 0 36px rgba(59,130,246,0.18);
+    }
+
+    /* Gillespie slider */
+    input[type=range].gsim-slider {
+      -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 2px;
+      background: rgba(59,130,246,0.22); outline: none; cursor: pointer; width: 100%;
+    }
+    input[type=range].gsim-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #3b82f6; cursor: pointer;
+      box-shadow: 0 0 8px rgba(59,130,246,0.6);
+    }
+    input[type=range].gsim-slider::-moz-range-thumb {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #3b82f6; border: none; cursor: pointer;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "inLanguage": "en",
+    "dateCreated": "2024-06-01T00:00:00+09:00",
+    "dateModified": "2026-05-13T09:00:00+09:00",
+    "mainEntity": {
+      "@type": "Person",
+      "@id": "#person",
+      "name": "Jin Woo Oh",
+      "jobTitle": "Senior Scientist",
+      "description": "Senior Scientist at Lunit | Regulatory Genomics & Spatial Biology | Ph.D. Johns Hopkins | Author Nature Papers.",
+      "worksFor": { "@type": "Organization", "name": "Lunit Inc." },
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Johns Hopkins University" },
+      "knowsAbout": [
+        "Spatial Transcriptomics","Digital Pathology",
+        "Oncology","Computational Biology","Bioinformatics","Genomics","Gene Regulation"
+      ],
+      "image": "https://oh-jinwoo94.github.io/jin-woo-oh/headshot.png",
+      "sameAs": [
+        "https://orcid.org/0000-0002-3545-5481",
+        "https://scholar.google.com/citations?user=V_mNtIQAAAAJ&hl=en&oi=ao",
+        "https://www.linkedin.com/in/jin-woo-oh-65113b90/",
+        "https://github.com/oh-jinwoo94",
+        "https://loop.frontiersin.org/people/2894462/overview",
+        "https://hopkinsyidp.org/people/jin-woo-oh/",
+        "https://www.ibric.org/bric/hanbitsa/han-interview.do?mode=view&id=92894&authorId=45198#!/list"
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body class="bg-[#040914] text-white antialiased">
+
+  <!-- ─── Navigation ─────────────────────────────────────────────────────── -->
+  <nav class="nav-glass fixed top-0 inset-x-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="font-semibold tracking-tight text-white text-sm">Jin Woo Oh</a>
+      <div class="flex items-center gap-5 text-sm">
+        <a href="#research" class="text-slate-400 hover:text-white transition">Research</a>
+        <a href="#publications" class="text-slate-400 hover:text-white transition">Publications</a>
+        <a href="cv.html" class="glass px-4 py-1.5 rounded-lg text-slate-300 hover:text-white hover:border-blue-500/50 transition" style="border:1px solid rgba(255,255,255,0.1)">CV</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ───────────────────────────────────────────────────────────── -->
+  <section class="relative min-h-screen flex items-center bg-grid overflow-hidden">
+
+    <!-- Ambient gradient orbs -->
+    <div class="orb-a pointer-events-none absolute -top-24 -left-48 w-[640px] h-[640px] rounded-full"
+         style="background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 68%);"></div>
+    <div class="orb-b pointer-events-none absolute bottom-0 -right-40 w-[560px] h-[560px] rounded-full"
+         style="background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 68%);"></div>
+    <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-full h-72"
+         style="background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.09) 0%, transparent 70%);"></div>
+
+    <div class="relative max-w-6xl mx-auto px-6 pt-24 pb-20 w-full">
+      <div class="flex flex-col lg:flex-row items-center lg:items-center gap-14 lg:gap-20">
+
+        <!-- Text -->
+        <div class="flex-1 text-center lg:text-left">
+          <div class="section-label anim-0 mb-5">Computational Biologist · Senior Scientist at Lunit</div>
+          <h1 class="anim-1 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+            Jin Woo Oh
+          </h1>
+          <p class="anim-2 text-slate-500 text-sm mt-3 mb-6">
+            Ph.D. in Biomedical Engineering · Johns Hopkins University
+          </p>
+          <p class="anim-3 text-slate-300 text-lg max-w-xl leading-relaxed mb-10 mx-auto lg:mx-0">
+            I develop algorithms and computational models to decode how genomes encode, regulate, and evolve biological function, from regulatory sequence grammar to the spatial organization of cells in disease.
+          </p>
+          <div class="anim-4 flex flex-wrap gap-3 justify-center lg:justify-start">
+            <a id="email-link" href="#"
+               class="btn-primary px-5 py-2.5 rounded-lg font-medium text-white text-sm">
+              Email
+            </a>
+            <a href="https://scholar.google.com/citations?user=V_mNtIQAAAAJ&hl=en&oi=ao"
+               target="_blank" rel="noopener noreferrer"
+               class="glass glass-hover px-5 py-2.5 rounded-lg text-sm text-slate-300 font-medium">
+              Google Scholar
+            </a>
+            <a href="https://www.linkedin.com/in/jin-woo-oh-65113b90/"
+               target="_blank" rel="noopener noreferrer"
+               class="glass glass-hover px-5 py-2.5 rounded-lg text-sm text-slate-300 font-medium">
+              LinkedIn
+            </a>
+            <a href="cv.html"
+               class="glass glass-hover px-5 py-2.5 rounded-lg text-sm text-slate-300 font-medium">
+              Full CV →
+            </a>
+          </div>
+        </div>
+
+        <!-- Headshot -->
+        <div class="anim-2 relative flex-shrink-0">
+          <div class="w-52 h-52 sm:w-60 sm:h-60 lg:w-64 lg:h-64 rounded-full overflow-hidden headshot-glow">
+            <img src="headshot.png" alt="Jin Woo Oh" class="w-full h-full object-cover">
+          </div>
+          <!-- Decorative concentric rings -->
+          <div class="pointer-events-none absolute inset-0 rounded-full"
+               style="box-shadow: 0 0 0 1px rgba(59,130,246,0.22); transform: scale(1.14);"></div>
+          <div class="pointer-events-none absolute inset-0 rounded-full"
+               style="box-shadow: 0 0 0 1px rgba(59,130,246,0.10); transform: scale(1.28);"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Career Arc ───────────────────────────────────────────────────── -->
+  <section class="py-14 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+
+        <!-- Node: JHU -->
+        <div class="glass rounded-2xl p-6 w-full sm:w-64 text-center">
+          <div class="section-label mb-2">2018 – 2024</div>
+          <div class="font-semibold text-white text-sm mb-1">Regulatory Genomics</div>
+          <div class="text-xs text-slate-400 mb-2">Algorithms &amp; Sequence Models</div>
+          <div class="text-xs text-slate-500">Johns Hopkins University</div>
+        </div>
+
+        <!-- Connector -->
+        <div class="hidden sm:flex items-center flex-shrink-0 w-24">
+          <div class="relative w-full h-px bg-white/10">
+            <div class="flow-dot"></div>
+          </div>
+          <svg class="flex-shrink-0 w-2.5 h-2.5 text-blue-400/60 -ml-px" fill="currentColor" viewBox="0 0 6 6">
+            <path d="M0 0L6 3L0 6z"/>
+          </svg>
+        </div>
+
+        <!-- Node: Lunit -->
+        <div class="glass arc-node-active rounded-2xl p-6 w-full sm:w-64 text-center">
+          <div class="section-label mb-2">2024 – Present</div>
+          <div class="font-semibold text-white text-sm mb-1">Spatial Oncology</div>
+          <div class="text-xs text-slate-400 mb-2">AI &amp; Computational Pathology</div>
+          <div class="text-xs text-slate-500">Lunit Inc.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── About ──────────────────────────────────────────────────────────── -->
+  <section id="about" class="py-24 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="section-label mb-4">About</div>
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-bold mb-6">From sequence to tissue</h2>
+        <div class="space-y-4 text-slate-400 leading-relaxed text-[15px]">
+          <p>
+            During my PhD at Johns Hopkins (2018–2024), I developed mathematical models and computational methods to study regulatory genome evolution, including
+            <a href="https://doi.org/10.1038/s41467-024-50708-z" target="_blank" rel="noopener noreferrer"
+            class="text-blue-400 hover:text-blue-300 transition">gkm-align</a>, a computational model for identifying
+            functionally conserved regulatory elements across evolutionarily distant mammals, and contributed to
+            large-scale ENCODE/IGVF CRISPRi perturbation screens to map gene regulatory networks.
+          </p>
+          <p>
+            At Lunit (2024–present), I apply these computational frameworks to spatial tumor biology, integrating
+            histological morphology and spatial transcriptomics to study the tumor microenvironment and mechanisms
+            of therapeutic resistance in cancer.
+          </p>
+          <p>
+            My broader goal is to develop quantitative models of how regulatory genomic information drives tissue
+            self-organization and how its misregulation causes disease. The research spans sequence-level regulatory
+            grammar, gene regulatory network dynamics, and the spatial patterning of cell states in development and cancer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Research Highlights ────────────────────────────────────────────── -->
+  <section id="research" class="py-24 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="section-label mb-4">Research</div>
+      <h2 class="text-3xl font-bold mb-2">Research Highlights</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card: Spatial tumor biology -->
+        <a class="glass glass-hover rounded-2xl overflow-hidden cursor-pointer group block"
+           href="https://oh-jinwoo94.github.io/jin-woo-oh/ST_vis.png"
+           data-image-url="https://oh-jinwoo94.github.io/jin-woo-oh/ST_vis.png"
+           data-image-title="Multimodal spatial analysis of tumor microenvironment"
+           data-image-alt="Multimodal integration of AI-powered histomorphology and spatial transcriptomics for tumor microenvironment analysis."
+           data-image-caption=""
+           data-narrative="<p class='text-sm text-slate-300 leading-relaxed'>Spatial transcriptomics and AI-powered histomorphology each capture complementary aspects of tumor tissue: the former resolves gene expression at single-cell resolution, the latter provides subcellular morphological detail across whole sections. An integrated pipeline was developed combining both modalities to enable parallel transcriptomic and morphological characterization of individual cells at micron scale.</p><p class='text-sm text-slate-300 leading-relaxed mt-3'>Applied to salivary gland cancer, a rare tumor type with limited treatment options, the pipeline identified 20 cell type groups and resolved tumor cell subtypes by both gene expression and nuclear morphology. In two patients with the same dominant tumor subtype who received identical neoadjuvant therapy yet had discordant outcomes, the analysis revealed that the recurred case showed upregulation of EMT and immune evasion programs alongside markedly depleted tumor-infiltrating lymphocytes with CXCL9 expression, a finding invisible to either technology alone.</p><p class='text-xs text-slate-500 leading-relaxed mt-4'><a href='https://doi.org/10.1158/1538-7445.AM2025-171' target='_blank' rel='noopener noreferrer' class='text-blue-400 hover:text-blue-300 transition'>AACR 2025</a> &middot; <a href='AACR_poster.pdf' target='_blank' rel='noopener noreferrer' class='text-blue-400 hover:text-blue-300 transition'>Poster</a> &middot; <a href='https://doi.org/10.1136/jitc-2025-012374' target='_blank' rel='noopener noreferrer' class='text-blue-400 hover:text-blue-300 transition'>JITC 2025</a></p>">
+          <div class="h-48 overflow-hidden bg-black/30 flex items-center justify-center">
+            <img src="ST_vis_thumb.jpg"
+                 alt="Multimodal spatial analysis of tumor microenvironment"
+                 class="w-full h-full object-contain transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-5">
+            <div class="section-label mb-1.5">AACR 2025</div>
+            <div class="font-semibold text-white text-sm leading-snug">Multimodal spatial analysis of tumor microenvironment</div>
+            <div class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+              Integrating AI-powered histomorphology and spatial transcriptomics to decode treatment resistance.
+            </div>
+          </div>
+        </a>
+
+        <!-- Card: gkm-align -->
+        <a class="glass glass-hover rounded-2xl overflow-hidden cursor-pointer group block"
+           href="gkm_align_independent_300fr.mp4"
+           target="_blank" rel="noopener noreferrer"
+           data-image-url="gkm_video_thumb.png"
+           data-image-title="Geometric modeling of genome evolution"
+           data-image-alt="Geometric modeling of genome evolution: identifying optimal alignment paths in gapped-kmer feature space (gkm-align)."
+           data-image-caption="(X,Y): projection of genomic windows into a 2D feature space via SVD of the Gram matrix G encoding sequence similarity; (Z): genomic position; rungs: orthologous pairs along the optimal alignment path; yellow: exons; gray: introns"
+           data-narrative="<p class='text-sm text-slate-300 leading-relaxed'>Most disease-associated genetic variants fall in non-coding regulatory regions, yet mapping regulatory elements like enhancers across species remains difficult. Unlike protein-coding sequences, regulatory elements have a degenerate structure: transcription factor binding sites shift and swap with minimal functional impact, incurring little fitness cost. The resulting tolerance for rapid sequence divergence makes conserved enhancers elusive to conventional base-by-base alignment.</p><p class='text-sm text-slate-300 leading-relaxed mt-3'>gkm-align addresses this by mapping genomic windows to vectors in a reproducing kernel Hilbert space (RKHS) defined by gapped k-mer compositions, representing each genomic locus as a trajectory along the genome on a sequence-feature manifold. The algorithm finds a minimal deformation alignment between human and mouse trajectories, reducing penalties for mutations that weakly affect regulatory function. This allows alignment to persist through divergence driven by neutral drift, recovering conserved enhancers that standard tools miss.</p><p class='text-xs text-slate-500 leading-relaxed mt-4'><a href='https://doi.org/10.1038/s41467-024-50708-z' target='_blank' rel='noopener noreferrer' class='text-blue-400 hover:text-blue-300 transition'>Nature Commun. 2024</a> &middot; <a href='https://github.com/oh-jinwoo94/gkm-align' target='_blank' rel='noopener noreferrer' class='text-blue-400 hover:text-blue-300 transition'>GitHub</a> &middot; <a href='https://github.com/oh-jinwoo94/gkm-align/blob/main/theory/gkm_align_algorithm_appendix.pdf' target='_blank' rel='noopener noreferrer' class='text-blue-400 hover:text-blue-300 transition'>Math</a></p>">
+          <div class="h-48 overflow-hidden bg-black/30 flex items-center justify-center">
+            <img src="gkm_video_thumb.png"
+                 alt="Geometric modeling of genome evolution"
+                 class="w-full h-full object-contain transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-5">
+            <div class="section-label mb-1.5">Nature Commun. 2024</div>
+            <div class="font-semibold text-white text-sm leading-snug">Computational modeling of regulatory genome evolution</div>
+            <div class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+              Identifying functionally conserved regulatory elements across evolutionarily distant mammals (gkm-align).
+            </div>
+          </div>
+        </a>
+
+        <!-- Card: Cell state transitions -->
+        <a class="glass glass-hover rounded-2xl overflow-hidden cursor-pointer group block"
+           href="#" data-gillespie="true">
+          <div class="h-48 overflow-hidden bg-black/30 flex items-center justify-center">
+            <img src="cell_state_transition_thumb.png"
+                 alt="Gene regulatory dynamics in cell-state transitions"
+                 class="w-full h-full object-contain transition duration-500 group-hover:scale-105">
+          </div>
+          <div class="p-5">
+            <div class="section-label mb-1.5">Nature Genetics 2023</div>
+            <div class="font-semibold text-white text-sm leading-snug">Gene regulatory dynamics in cell-state transitions</div>
+            <div class="text-slate-400 text-xs mt-1.5 leading-relaxed">
+              Stochastic simulation of cell-state transitions under CRISPR enhancer perturbation.
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Selected Publications ──────────────────────────────────────────── -->
+  <section id="publications" class="py-24 border-t border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="section-label mb-4">Publications</div>
+      <h2 class="text-3xl font-bold mb-3">Selected Publications</h2>
+      <p class="text-slate-500 text-sm mb-10">
+        (* co-first authors · <span class="font-bold text-slate-400">••</span> highlighted in <em>Curr. Opin. Genet. Dev.</em>)
+      </p>
+
+      <div class="space-y-7">
+
+        <div class="pub-item pl-5">
+          <div class="text-xs font-medium mb-1">
+            <span class="text-blue-400">Nature Communications · 2024</span>
+            <span class="ml-2 font-bold text-slate-300">••</span>
+          </div>
+          <div class="font-medium text-white text-sm leading-snug">
+            Gapped-kmer sequence modeling robustly identifies regulatory vocabularies and distal enhancers conserved between evolutionarily distant mammals
+          </div>
+          <div class="text-slate-500 text-xs mt-1">
+            <span class="text-slate-300">Jin Woo Oh</span> &amp; Michael A Beer
+          </div>
+          <a href="https://doi.org/10.1038/s41467-024-50708-z" target="_blank" rel="noopener noreferrer"
+             class="text-xs text-blue-400 hover:text-blue-300 transition mt-1.5 inline-block">doi:10.1038/s41467-024-50708-z →</a>
+        </div>
+
+        <div class="pub-item pl-5">
+          <div class="text-xs font-medium mb-1">
+            <span class="text-blue-400">Nature Methods · 2024</span>
+          </div>
+          <div class="font-medium text-white text-sm leading-snug">
+            Multicenter integrated analysis of noncoding CRISPRi screens
+          </div>
+          <div class="text-slate-500 text-xs mt-1">
+            <span class="text-slate-300">Jin Woo Oh*</span>, David Yao*, Josh Tycko*, Lexi R Bounds*, Sager J Gosai*, et al.
+          </div>
+          <a href="https://doi.org/10.1038/s41592-024-02216-7" target="_blank" rel="noopener noreferrer"
+             class="text-xs text-blue-400 hover:text-blue-300 transition mt-1.5 inline-block">doi:10.1038/s41592-024-02216-7 →</a>
+        </div>
+
+        <div class="pub-item pl-5">
+          <div class="text-xs font-medium mb-1">
+            <span class="text-blue-400">Nature Genetics · 2023</span>
+            <span class="ml-2 font-bold text-slate-300">••</span>
+          </div>
+          <div class="font-medium text-white text-sm leading-snug">
+            Dynamic network-guided CRISPRi screen identifies CTCF-loop-constrained nonlinear enhancer gene regulatory activity during cell state transitions
+          </div>
+          <div class="text-slate-500 text-xs mt-1">
+            Renhe Luo, Jielin Yan, <span class="text-slate-300">Jin Woo Oh</span>, et al.
+          </div>
+          <a href="https://doi.org/10.1038/s41588-023-01450-7" target="_blank" rel="noopener noreferrer"
+             class="text-xs text-blue-400 hover:text-blue-300 transition mt-1.5 inline-block">doi:10.1038/s41588-023-01450-7 →</a>
+        </div>
+
+        <div class="pub-item pl-5">
+          <div class="text-xs font-medium mb-1">
+            <span class="text-blue-400">Journal for ImmunoTherapy of Cancer · 2025</span>
+          </div>
+          <div class="font-medium text-white text-sm leading-snug">
+            Artificial intelligence-powered spatial analysis of tumor microenvironment in patients with non-small cell lung cancer with acquired resistance to EGFR tyrosine kinase inhibitor
+          </div>
+          <div class="text-slate-500 text-xs mt-1">
+            Yeong Hak Bang*, Geun-Ho Park*, <span class="text-slate-300">Jin Woo Oh*</span>, et al.
+          </div>
+          <a href="https://pubmed.ncbi.nlm.nih.gov/41173494/" target="_blank" rel="noopener noreferrer"
+             class="text-xs text-blue-400 hover:text-blue-300 transition mt-1.5 inline-block">PubMed →</a>
+        </div>
+
+      </div>
+
+      <div class="mt-12">
+        <a href="cv.html#publications"
+           class="glass glass-hover inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm text-slate-300 font-medium">
+          View all publications
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─────────────────────────────────────────────────────────── -->
+  <footer class="border-t border-white/[0.06] py-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-5">
+      <div class="text-sm text-slate-600">
+        © <span id="year"></span> Jin Woo Oh ·
+        <time datetime="2026-05-13">Last updated May 13, 2026</time>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-5 text-sm text-slate-500">
+        <a href="https://orcid.org/0000-0002-3545-5481" target="_blank" rel="noopener noreferrer"
+           class="hover:text-slate-200 transition">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=V_mNtIQAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer"
+           class="hover:text-slate-200 transition">Google Scholar</a>
+        <a href="https://github.com/oh-jinwoo94" target="_blank" rel="noopener noreferrer"
+           class="hover:text-slate-200 transition">GitHub</a>
+        <a href="https://www.linkedin.com/in/jin-woo-oh-65113b90/" target="_blank" rel="noopener noreferrer"
+           class="hover:text-slate-200 transition">LinkedIn</a>
+        <a href="https://loop.frontiersin.org/people/2894462/overview" target="_blank" rel="noopener noreferrer"
+           class="hover:text-slate-200 transition">Loop</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── Image / Video Modal ────────────────────────────────────────────── -->
+  <div id="image-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+       style="background: rgba(0,0,0,0.80); backdrop-filter: blur(6px);">
+    <div class="w-full max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+         style="background: rgba(10,20,40,0.95); border: 1px solid rgba(255,255,255,0.10);">
+      <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 flex-shrink-0">
+        <div id="image-modal-title" class="text-sm font-medium text-white">Figure</div>
+        <button id="image-modal-close" type="button"
+                class="px-3 py-1 text-xs rounded-lg text-slate-400 hover:text-white transition"
+                style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);">
+          Close ✕
+        </button>
+      </div>
+      <div class="flex flex-col md:flex-row flex-1 min-h-0">
+        <div class="md:w-3/5 p-4 flex flex-col gap-3 justify-center overflow-hidden">
+          <img id="image-modal-img" src="" alt="" class="max-h-[60vh] w-auto max-w-full object-contain rounded-lg hidden">
+          <video id="image-modal-video"
+                 class="max-h-[60vh] w-full rounded-lg hidden bg-black"
+                 controls playsinline muted autoplay loop></video>
+          <p id="image-modal-caption" class="text-xs text-slate-500 hidden leading-relaxed px-1"></p>
+        </div>
+        <div class="md:w-2/5 p-6 border-t md:border-t-0 md:border-l overflow-y-auto"
+             style="border-color: rgba(255,255,255,0.08);">
+          <div id="image-modal-narrative" class="hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Gillespie Simulation Modal ─────────────────────────────────────── -->
+  <div id="gsim-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4"
+       style="background: rgba(0,0,0,0.87); backdrop-filter: blur(6px);">
+    <div class="w-full max-w-5xl rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+         style="background: rgba(8,16,36,0.98); border: 1px solid rgba(255,255,255,0.10); max-height: 94vh;">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between px-5 py-4 border-b border-white/10 flex-shrink-0">
+        <div>
+          <div class="text-sm font-semibold text-white">Gene Regulatory Dynamics</div>
+          <div class="text-xs text-slate-500 mt-0.5">Stochastic Gillespie simulation · cell-state transition</div>
+        </div>
+        <button id="gsim-close" type="button"
+                class="px-3 py-1 text-xs rounded-lg text-slate-400 hover:text-white transition"
+                style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);">
+          Close ✕
+        </button>
+      </div>
+
+      <!-- Body: two columns -->
+      <div class="flex flex-col md:flex-row flex-1 min-h-0 overflow-hidden">
+
+      <!-- Left: simulation -->
+      <div class="md:w-3/5 flex flex-col min-h-0 overflow-hidden">
+
+      <!-- Sliders -->
+      <div class="px-5 py-4 border-b border-white/[0.06] flex-shrink-0 grid grid-cols-2 gap-8">
+        <div id="gsim-s0-ctrl">
+          <div class="flex justify-between items-baseline mb-2">
+            <span class="text-xs text-slate-400">Stimulus strength</span>
+            <span id="gsim-s0-label" class="text-xs text-blue-400 font-mono">S₀ = 5</span>
+          </div>
+          <input id="gsim-s0-slider" type="range" min="0" max="5" step="1" value="3" class="gsim-slider">
+          <div class="flex justify-between mt-1.5 text-[10px] text-slate-600">
+            <span>0</span><span>2</span><span>4</span><span>5</span><span>6</span><span>8</span>
+          </div>
+        </div>
+        <div id="gsim-inh-ctrl">
+          <div class="flex justify-between items-baseline mb-2">
+            <span class="text-xs text-slate-400">CRISPR inhibition</span>
+            <span id="gsim-inh-label" class="text-xs text-blue-400 font-mono">0%</span>
+          </div>
+          <input id="gsim-inh-slider" type="range" min="0" max="4" step="1" value="0" class="gsim-slider">
+          <div class="flex justify-between mt-1.5 text-[10px] text-slate-600">
+            <span>0%</span><span>−40%</span><span>−60%</span><span>−70%</span><span>−80%</span>
+          </div>
+        </div>
+      </div>
+      <div class="px-5 pt-3 pb-1 flex-shrink-0">
+        <p class="text-xs text-slate-500 leading-relaxed italic">Adjust stimulus strength to induce cell-state transition. Increase inhibition to simulate time-delay in cell-state transition.</p>
+      </div>
+
+      <!-- Loading -->
+      <div id="gsim-loading" class="flex-1 flex items-center justify-center py-16">
+        <div class="text-sm text-slate-500">Loading simulation data…</div>
+      </div>
+
+      <!-- Viz (hidden until loaded) -->
+      <div id="gsim-viz" class="hidden flex-col">
+
+        <!-- Cell grid -->
+        <div class="px-5 pt-4 flex-shrink-0">
+          <div class="flex items-center justify-between mb-2">
+            <div class="text-[10px] text-slate-600 uppercase tracking-wider">Cell population · n = 50</div>
+            <div class="flex items-center gap-3 text-[10px] text-slate-500">
+              <span><span class="inline-block w-2 h-2 rounded-full mr-1" style="background:#4ade80;vertical-align:middle;"></span>initial state</span>
+              <span><span class="inline-block w-2 h-2 rounded-full mr-1" style="background:#f87171;vertical-align:middle;"></span>transitioned state</span>
+            </div>
+          </div>
+          <canvas id="gsim-cells" height="120" class="w-full block rounded-lg"
+                  style="background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.05);"></canvas>
+        </div>
+
+        <!-- Trajectory plot -->
+        <div class="px-5 pt-3 flex-shrink-0">
+          <div class="text-[10px] text-slate-600 uppercase tracking-wider mb-2">
+            TF activity · individual cells &amp; median <span style="color:rgba(255,255,255,0.55);">(white)</span>
+          </div>
+          <canvas id="gsim-plot" height="168" class="w-full block rounded-lg"
+                  style="background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.05);"></canvas>
+        </div>
+
+        <!-- Controls -->
+        <div class="px-5 py-3 flex items-center gap-3 flex-shrink-0">
+          <button id="gsim-play" type="button"
+                  class="px-4 py-1.5 rounded-lg text-xs font-medium text-white transition"
+                  style="background:rgba(59,130,246,0.3);border:1px solid rgba(59,130,246,0.4);">
+            Pause
+          </button>
+          <button id="gsim-reset" type="button"
+                  class="px-4 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition"
+                  style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+            Reset
+          </button>
+          <div class="flex-1"></div>
+          <span id="gsim-time" class="text-xs text-slate-500 font-mono">t = 0%</span>
+        </div>
+
+      </div><!-- end gsim-viz -->
+      </div><!-- end left column -->
+
+      <!-- Right: narrative -->
+      <div class="md:w-2/5 p-6 border-t md:border-t-0 md:border-l overflow-y-auto"
+           style="border-color: rgba(255,255,255,0.08);">
+        <p class="text-sm text-slate-300 leading-relaxed">Cell-state transitions in development are governed by cooperative autoregulation among core transcription factors. Using the transition from embryonic stem cells (ESC) to definitive endoderm (DE) as a model system, a CRISPRi screen targeting enhancers of core DE transcription factors revealed that perturbation delays transition rather than preventing it. Cells with perturbed enhancers transition more slowly but ultimately reach the target state. This temporal pattern is consistent with a bistable switch, where the two cell states represent stable fixed points and the transition requires crossing an activation barrier.</p>
+        <p class="text-sm text-slate-300 leading-relaxed mt-3">A discrete stochastic model was constructed using the Gillespie algorithm, where cooperative TF–enhancer binding drives autocatalytic TF production. Stimulus strength controls whether cells cross the transition threshold; the inhibition parameter models CRISPRi-mediated reduction in enhancer activity. Weak perturbation slows the transition without preventing it; strong perturbation collapses it entirely, reproducing the temporal dynamics observed in the screen.</p>
+        <p class="text-xs text-slate-500 leading-relaxed mt-4">For more detail, see <a href="https://doi.org/10.1038/s41588-023-01450-7" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 transition">Nature Genetics 2023</a>.</p>
+      </div>
+
+      </div><!-- end body columns -->
+    </div>
+  </div>
+
+  <!-- ─── Scripts ────────────────────────────────────────────────────────── -->
+  <script>
+    // Email (obfuscated)
+    (function () {
+      var u = 'oh.jinwoo94', d = 'gmail.com';
+      var el = document.getElementById('email-link');
+      if (el) el.href = 'mailto:' + u + '@' + d;
+    })();
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Modal
+    (function () {
+      var modal         = document.getElementById('image-modal');
+      var modalImg      = document.getElementById('image-modal-img');
+      var modalVideo    = document.getElementById('image-modal-video');
+      var modalTitle    = document.getElementById('image-modal-title');
+      var modalCap      = document.getElementById('image-modal-caption');
+      var modalNarrative = document.getElementById('image-modal-narrative');
+      var closeBtn      = document.getElementById('image-modal-close');
+      if (!modal) return;
+
+      function setCaption(el, caption) {
+        if (!caption) { el.classList.add('hidden'); return; }
+        if (/<[a-z][\s\S]*>/i.test(caption)) { el.innerHTML = caption; } else { el.textContent = caption; }
+        el.classList.remove('hidden');
+      }
+
+      function openImage(url, alt, title, caption, narrative) {
+        modalVideo.classList.add('hidden');
+        modalVideo.pause(); modalVideo.src = '';
+        modalImg.classList.remove('hidden');
+        modalImg.src = url; modalImg.alt = alt || '';
+        modalTitle.textContent = title || 'Figure';
+        setCaption(modalCap, caption);
+        setCaption(modalNarrative, narrative);
+        modal.classList.remove('hidden'); modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function openVideo(url, poster, title, caption, narrative) {
+        modalImg.classList.add('hidden'); modalImg.src = '';
+        modalVideo.classList.remove('hidden');
+        if (poster) modalVideo.setAttribute('poster', poster);
+        modalVideo.muted = true; modalVideo.currentTime = 0;
+        modalVideo.src = url; modalVideo.load();
+        var p = modalVideo.play();
+        if (p && p.catch) p.catch(function () {});
+        modalTitle.textContent = title || 'Video';
+        setCaption(modalCap, caption);
+        setCaption(modalNarrative, narrative);
+        modal.classList.remove('hidden'); modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden'); modal.classList.remove('flex');
+        modalImg.src = ''; modalImg.classList.add('hidden');
+        modalVideo.pause(); modalVideo.src = ''; modalVideo.classList.add('hidden');
+        modalCap.textContent = ''; modalCap.classList.add('hidden');
+        modalNarrative.textContent = ''; modalNarrative.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('[data-image-url]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+          e.preventDefault();
+          var href      = el.getAttribute('href') || '';
+          var title     = el.getAttribute('data-image-title') || '';
+          var caption   = el.getAttribute('data-image-caption') || '';
+          var narrative = el.getAttribute('data-narrative') || '';
+          if (href.toLowerCase().endsWith('.mp4')) {
+            openVideo(href, el.getAttribute('data-image-url'), title, caption, narrative);
+          } else {
+            openImage(el.getAttribute('data-image-url'), el.getAttribute('data-image-alt'), title, caption, narrative);
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+      });
+    })();
+  </script>
+
+  <!-- ─── Gillespie Simulation Script ─────────────────────────────────────── -->
+  <script>
+  (function () {
+    var GS = {
+      data: null, activeTrajs: null, activeMedians: null,
+      playing: false, frame: 0, nFrames: 300, nCells: 50,
+      rafId: null, lastTs: null, msPerFrame: 33,
+      s0Vals:     [0, 2, 4, 5, 6, 8],
+      inhPcts:    [0, 40, 60, 70, 80],
+      stimLabels: ['S₀ = 0','S₀ = 2','S₀ = 4','S₀ = 5','S₀ = 6','S₀ = 8'],
+      inhLabels:  ['0%','−40%','−60%','−70%','−80%'],
+    };
+
+    var el = {
+      modal:    document.getElementById('gsim-modal'),
+      cells:    document.getElementById('gsim-cells'),
+      plot:     document.getElementById('gsim-plot'),
+      close:    document.getElementById('gsim-close'),
+      play:     document.getElementById('gsim-play'),
+      reset:    document.getElementById('gsim-reset'),
+      s0Slider: document.getElementById('gsim-s0-slider'),
+      inhSlider:document.getElementById('gsim-inh-slider'),
+      s0Label:  document.getElementById('gsim-s0-label'),
+      inhLabel: document.getElementById('gsim-inh-label'),
+      timeLbl:  document.getElementById('gsim-time'),
+      loading:  document.getElementById('gsim-loading'),
+      viz:      document.getElementById('gsim-viz'),
+      s0Ctrl:   document.getElementById('gsim-s0-ctrl'),
+      inhCtrl:  document.getElementById('gsim-inh-ctrl'),
+    };
+
+    function tfColor(t) {
+      return 'rgb('+(74+174*t|0)+','+(222-109*t|0)+','+(128-15*t|0)+')';
+    }
+
+    function computeMedians(trajs) {
+      var nF = trajs[0].length, nC = trajs.length;
+      var med = new Float32Array(nF), row = new Array(nC);
+      for (var f = 0; f < nF; f++) {
+        for (var i = 0; i < nC; i++) row[i] = trajs[i][f];
+        row.sort(function(a,b){return a-b;});
+        med[f] = (row[(nC>>1)-1] + row[nC>>1]) / 2;
+      }
+      return med;
+    }
+
+    function getCondKey() {
+      var s0  = GS.s0Vals[+el.s0Slider.value];
+      var inh = GS.inhPcts[+el.inhSlider.value];
+      return 's' + s0 + '_i' + inh;
+    }
+
+    function updateLabels() {
+      el.s0Label.textContent  = GS.stimLabels[+el.s0Slider.value];
+      el.inhLabel.textContent = GS.inhLabels[+el.inhSlider.value];
+      el.s0Ctrl.style.opacity  = '1';
+      el.inhCtrl.style.opacity = '1';
+    }
+
+    function setCondition(key) {
+      var cond = GS.data.conditions[key];
+      GS.activeTrajs   = cond.data;
+      GS.activeMedians = computeMedians(cond.data);
+      GS.nFrames = GS.data.n_frames;
+      GS.nCells  = GS.data.n_cells;
+    }
+
+    function drawCells(f) {
+      var cv = el.cells, ctx = cv.getContext('2d');
+      var W = cv.width, H = cv.height;
+      ctx.clearRect(0, 0, W, H);
+      // Hexagonal packing: offset every other row by half a cell width
+      var cols = 10;
+      var rows = Math.ceil(GS.nCells / cols);
+      var pX = 14, pY = 10;
+      var cW = (W - 2*pX) / cols;
+      var cH = (H - 2*pY) / rows;
+      var r = Math.min(cW, cH) * 0.37;
+      for (var i = 0; i < GS.nCells; i++) {
+        var col = i % cols, row = Math.floor(i / cols);
+        var cx = pX + cW*(col+0.5) + (row % 2 === 1 ? cW*0.5 : 0);
+        var cy = pY + cH*(row+0.5);
+        if (cx + r > W) continue; // skip cells that would clip edge on offset rows
+        var tf = GS.activeTrajs[i][f];
+        var ri = 74+174*tf|0, gi = 222-109*tf|0, bi = 128-15*tf|0;
+        ctx.beginPath(); ctx.arc(cx, cy, r*1.75, 0, 6.283);
+        ctx.fillStyle = 'rgba('+ri+','+gi+','+bi+',0.15)'; ctx.fill();
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, 6.283);
+        ctx.fillStyle = 'rgb('+ri+','+gi+','+bi+')'; ctx.fill();
+      }
+    }
+
+    function drawPlot(f) {
+      var cv = el.plot, ctx = cv.getContext('2d');
+      var W = cv.width, H = cv.height;
+      ctx.clearRect(0, 0, W, H);
+      var pL=34, pR=10, pT=8, pB=22;
+      var pW=W-pL-pR, pH=H-pT-pB;
+
+      // Grid
+      ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth = 1;
+      [0, 0.5, 1].forEach(function(v){
+        var y = pT+(1-v)*pH;
+        ctx.beginPath(); ctx.moveTo(pL,y); ctx.lineTo(pL+pW,y); ctx.stroke();
+      });
+      // Axes
+      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      ctx.beginPath(); ctx.moveTo(pL,pT); ctx.lineTo(pL,pT+pH); ctx.lineTo(pL+pW,pT+pH); ctx.stroke();
+      // Labels
+      ctx.fillStyle = 'rgba(255,255,255,0.22)';
+      ctx.font = '9px Inter,system-ui,sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText('1.0',pL-3,pT+4); ctx.fillText('0.5',pL-3,pT+pH/2+4); ctx.fillText('0',pL-3,pT+pH+4);
+
+      // Individual trajectories
+      for (var i = 0; i < GS.nCells; i++) {
+        var traj = GS.activeTrajs[i];
+        ctx.beginPath();
+        for (var ff = 0; ff <= f; ff++) {
+          var x = pL+(ff/(GS.nFrames-1))*pW, y = pT+(1-traj[ff])*pH;
+          ff===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+        }
+        var tf = traj[f];
+        ctx.strokeStyle='rgba('+(74+174*tf|0)+','+(222-109*tf|0)+','+(128-15*tf|0)+',0.22)';
+        ctx.lineWidth = 0.75; ctx.stroke();
+      }
+
+      // Median
+      ctx.beginPath();
+      for (var ff = 0; ff <= f; ff++) {
+        var x = pL+(ff/(GS.nFrames-1))*pW, y = pT+(1-GS.activeMedians[ff])*pH;
+        ff===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      }
+      ctx.strokeStyle='rgba(255,255,255,0.88)'; ctx.lineWidth=2; ctx.stroke();
+
+      // Time cursor
+      var xNow = pL+(f/(GS.nFrames-1))*pW;
+      ctx.setLineDash([3,4]); ctx.strokeStyle='rgba(96,165,250,0.45)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(xNow,pT); ctx.lineTo(xNow,pT+pH); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function draw(f) {
+      if (!GS.activeTrajs) return;
+      drawCells(f); drawPlot(f);
+      el.timeLbl.textContent = 't = '+Math.round(f/(GS.nFrames-1)*100)+'%';
+    }
+
+    function tick(ts) {
+      GS.rafId = requestAnimationFrame(tick);
+      if (GS.lastTs === null) { GS.lastTs = ts; return; }
+      if (ts - GS.lastTs < GS.msPerFrame) return;
+      GS.lastTs = ts;
+      GS.frame = (GS.frame + 1) % GS.nFrames;
+      draw(GS.frame);
+    }
+
+    function play() {
+      if (GS.rafId) return;
+      GS.playing = true; GS.lastTs = null;
+      el.play.textContent = 'Pause';
+      GS.rafId = requestAnimationFrame(tick);
+    }
+
+    function pause() {
+      if (GS.rafId) { cancelAnimationFrame(GS.rafId); GS.rafId = null; }
+      GS.playing = false; el.play.textContent = 'Play';
+    }
+
+    function resetAnim() {
+      pause(); GS.frame = 0; draw(0); play();
+    }
+
+    function resizeCanvases() {
+      el.cells.width = el.cells.offsetWidth || 680;
+      el.plot.width  = el.plot.offsetWidth  || 680;
+    }
+
+    function showViz() {
+      el.loading.classList.add('hidden');
+      el.viz.classList.remove('hidden'); el.viz.classList.add('flex');
+    }
+
+    function switchCond() {
+      if (!GS.data) return;
+      setCondition(getCondKey());
+      updateLabels();
+      resetAnim();
+    }
+
+    function openModal() {
+      el.modal.classList.remove('hidden'); el.modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+      if (GS.data) {
+        showViz();
+        setTimeout(function(){ resizeCanvases(); switchCond(); }, 10);
+        return;
+      }
+
+      el.loading.classList.remove('hidden');
+      el.viz.classList.add('hidden'); el.viz.classList.remove('flex');
+
+      fetch('gillespie_data.json')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          GS.data = d;
+          showViz();
+          setTimeout(function(){
+            resizeCanvases();
+            setCondition(getCondKey());
+            updateLabels();
+            play();
+          }, 10);
+        })
+        .catch(function(){
+          el.loading.innerHTML = '<p class="text-sm text-slate-500">Simulation data not yet available — check back soon.</p>';
+        });
+    }
+
+    function closeModal() {
+      pause();
+      el.modal.classList.add('hidden'); el.modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    el.close.addEventListener('click', closeModal);
+    el.modal.addEventListener('click', function(e){ if(e.target===el.modal) closeModal(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && !el.modal.classList.contains('hidden')) closeModal();
+    });
+    el.play.addEventListener('click', function(){ GS.playing ? pause() : play(); });
+    el.reset.addEventListener('click', resetAnim);
+
+    el.s0Slider.addEventListener('input', switchCond);
+    el.inhSlider.addEventListener('input', switchCond);
+
+    document.querySelectorAll('[data-gillespie]').forEach(function(card){
+      card.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+    });
+
+    updateLabels();
+  })();
+  </script>
+
+</body>
+</html>
